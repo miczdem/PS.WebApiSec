@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Microsoft.Owin;
 using Owin;
+using PS.WebApiSec.WebApi.Pipeline;
 
 [assembly: OwinStartup(typeof(PS.WebApiSec.WebApi.Startup))]
 
@@ -16,6 +15,9 @@ namespace PS.WebApiSec.WebApi
             configuration.Routes.MapHttpRoute(
                 "default",
                 "api/{controller}");
+
+            app.Use(typeof (TestMiddleware));
+
             app.UseWebApi(configuration);
 
         }

@@ -21,6 +21,7 @@ namespace PS.WebApiSec.WebApi.Pipeline
             //"server.user" is the key for the principal in the dictionary, or use the OwinContext wrapper
             var context = new OwinContext(env);
             Helper.Write("Middleware", context.Request.User);
+            await _next(env);
         }
     }
 }
